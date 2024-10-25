@@ -25,12 +25,7 @@ public class Background : MonoBehaviour
 
     private void Update()
     {
-        Vector2 desplazamiento = player.position - lastPosition;
-
-        if (desplazamiento != Vector2.zero)
-        {
-            offset = (player.velocity.x / 10) * movementSpeed * Time.deltaTime;
-        }
+        offset = (player.velocity.x / 10) * movementSpeed * Time.deltaTime;
         material.mainTextureOffset += offset;
     }
 }
