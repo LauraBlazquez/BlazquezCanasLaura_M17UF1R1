@@ -5,15 +5,26 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static AudioManager instance { get; private set; }
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        } else
+        {
+            Debug.Log("Más de un AudioManager en escena");
+        }
+    }
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlaySound(AudioClip audio)
     {
-        
+        audioSource.PlayOneShot(audio);
     }
 }
