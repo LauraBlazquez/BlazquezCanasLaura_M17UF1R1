@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    [SerializeField] private Vector2 movementSpeed;
+    public Vector2 movementSpeed;
     private Vector2 offset;
     private Material material;
     private Rigidbody2D player;
