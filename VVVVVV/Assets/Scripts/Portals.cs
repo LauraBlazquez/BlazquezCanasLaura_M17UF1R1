@@ -21,10 +21,13 @@ public class Portals : MonoBehaviour
             if (portal.name == "PortalForward")
             {
                 indexScene++;
+                PlayerMovement.forward = true;
+
             }
             if (portal.name == "PortalBack")
             {
                 indexScene--;
+                PlayerMovement.forward = false;
             }
             SceneManager.LoadScene(indexScene);
         }
