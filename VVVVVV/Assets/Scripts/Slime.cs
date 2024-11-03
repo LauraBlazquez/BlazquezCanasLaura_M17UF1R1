@@ -23,7 +23,7 @@ public class Slime : MonoBehaviour
         if (!isVisible)
         {
             RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, new Vector2(spawnPoint.GetComponent<SpriteRenderer>().flipX == false ? 1 : -1, 0));
-            if (Array.Exists(raycastHit2D, x => x.collider.gameObject.name.Equals("Ranita")))
+            if (Array.Exists(raycastHit2D, x => x.collider.gameObject.tag.Equals("Player")))
             {
                 StartCoroutine (SpawnSlimes());
                 isVisible = true;

@@ -5,9 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance { get; private set; }
+    private static AudioManager instance;
     private AudioSource audioSource;
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void PlaySound(AudioClip audio)
+    {
+        audioSource.PlayOneShot(audio);
+    }
     private void Awake()
     {
         if (instance == null)
@@ -15,16 +25,7 @@ public class AudioManager : MonoBehaviour
             instance = this;
         } else
         {
-            Debug.Log("Más de un AudioManager en escena");
+            Destroy(gameObject);
         }
-    }
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    public void PlaySound(AudioClip audio)
-    {
-        audioSource.PlayOneShot(audio);
     }
 }

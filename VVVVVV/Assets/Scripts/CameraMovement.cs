@@ -5,12 +5,30 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public GameObject player;
-    public Vector2 minPos, maxPos;
+
+    private static CameraMovement instance;
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Update()
     {
         float posX = player.transform.position.x;
         float posY = player.transform.position.y;
-        transform.position = new Vector3(Mathf.Clamp(posX, minPos.x, maxPos.x),Mathf.Clamp(posY, minPos.y, maxPos.y),transform.position.z);
+        transform.position = new Vector3(posX,posY,transform.position.z);
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
