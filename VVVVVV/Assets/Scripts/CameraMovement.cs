@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
     public GameObject player;
+    public static CameraMovement instance;
 
-    private static CameraMovement instance;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(posX,posY,transform.position.z);
     }
 
-    private void Awake()
+    void Awake()
     {
         if (instance == null)
         {
