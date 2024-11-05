@@ -1,31 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    private static AudioManager instance;
-    private AudioSource audioSource;
+    public AudioSource JumpSound;
+    public AudioSource Respawn;
+    public AudioSource Slime;
+    public AudioSource Celtics;
+    public static AudioManager instance;
 
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public void PlaySound(AudioClip audio)
-    {
-        audioSource.PlayOneShot(audio);
-    }
-    private void Awake()
+    void Awake()
     {
         if (instance == null)
         {
             instance = this;
-        } else
+        }
+        else
         {
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+        Celtics.Play();
+    }
+
+    public void PlaySoundJump()
+    {
+        JumpSound.Play();
+    }
+
+    public void PlaySoundSlime()
+    {
+        Slime.Play();
+    }
+
+    public void PlaySoundRespawn()
+    {
+        Respawn.Play();
     }
 }

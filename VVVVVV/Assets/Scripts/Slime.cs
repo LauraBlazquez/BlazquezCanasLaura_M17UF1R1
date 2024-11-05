@@ -18,7 +18,8 @@ public class Slime : MonoBehaviour
             StartCoroutine(SpawnSlimes());
         }
     }
-    private void Update()
+
+    void Update()
     {
         if (!isVisible)
         {
@@ -35,6 +36,7 @@ public class Slime : MonoBehaviour
     {
         GameObject projectile = Instantiate(projectilePrefab, spawnPoint.transform.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileSpeed,0);
+        AudioManager.instance.PlaySoundSlime();
         yield return new WaitForSeconds(spawnTime);
         yield return SpawnSlimes();
     }
